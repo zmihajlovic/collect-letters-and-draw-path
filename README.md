@@ -1,2 +1,4 @@
-# collect-letters-and-draw-path
-Collect letters and path in 2D array.
+- navigate into project after cloning repo;
+- run -npm install- to install all deps;
+- run -npm run test- to run tests;
+- run -npm run dev- to run dev server;
