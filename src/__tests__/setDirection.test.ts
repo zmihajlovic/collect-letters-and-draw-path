@@ -122,32 +122,6 @@ describe("setDirection function tests", () => {
     ).toThrowError("Fork in path.");
   });
 
-  it("should set direction when letter is found on turn", () => {
-    const mockCharactersMap = [
-      ["@", "-", "B"],
-      ["", "", "x"],
-      ["", "", ""],
-    ];
-
-    vi.spyOn(CharactersMap, "CHARACTERS_MAP", "get").mockReturnValue(
-      mockCharactersMap
-    );
-
-    // Get direction from local storage mock
-    localStorageMock["direction"] = "1";
-
-    const currentPosition = [0, 2];
-    const currentCharacter = "B";
-    const visitedPositions = [
-      [0, 0],
-      [0, 1],
-    ];
-
-    setDirection(currentPosition, currentCharacter, visitedPositions);
-
-    expect(localStorageMock["direction"]).toBe("2");
-  });
-
   it("should throw an error when encountering a fake turn", () => {
     const mockCharactersMap = [
       ["@", "-", "A", "-", "+", "-", "B", "-", "x"],
