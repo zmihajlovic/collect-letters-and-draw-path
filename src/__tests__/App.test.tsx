@@ -130,4 +130,22 @@ describe("App component tests", () => {
     expect(letters).toBe("AB");
     expect(path).toBe("@-A--+|+-B--x");
   });
+
+  it("should keep direction, even in a compact space", () => {
+    const mockCharactersMap = [
+      ["", "+", "-", "L", "-", "+", "", ""],
+      ["", "|", "", "", "+", "A", "-", "+"],
+      ["@", "B", "+", "", "+", "+", "", "H"],
+      ["", "+", "+", "", "", "", "", "x"],
+    ];
+
+    vi.spyOn(CharactersMap, "CHARACTERS_MAP", "get").mockReturnValue(
+      mockCharactersMap
+    );
+
+    const { letters, path } = getCollectedCharacters();
+
+    expect(letters).toBe("BLAH");
+    expect(path).toBe("@B+++B|+-L-+A+++A-+Hx");
+  });
 });

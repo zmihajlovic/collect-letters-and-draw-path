@@ -73,20 +73,4 @@ describe("getCollectedCharacters function tests", () => {
       getCollectedCharacters();
     }).toThrowError("Invalid character.");
   });
-
-  it("should go straight through intersections", () => {
-    const mockCharactersMap = [
-      ["", "", "", "", "x"],
-      ["@", "-", ".", "-", "+"],
-      ["", "", "", "", ""],
-    ];
-
-    vi.spyOn(CharactersMap, "CHARACTERS_MAP", "get").mockReturnValue(
-      mockCharactersMap
-    );
-
-    expect(() => {
-      getCollectedCharacters();
-    }).toThrowError("Invalid character.");
-  });
 });
