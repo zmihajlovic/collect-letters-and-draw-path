@@ -93,10 +93,11 @@ export const setDirection = (
 
         // Turn if letter is found on turn
         if (LETTERS_REGEX.test(currentCharacter)) {
+          console.log(CHARACTERS_MAP.length);
           if (
             currentPositionX === 0 ||
             currentPositionY === 0 ||
-            currentPositionX === CHARACTERS_MAP.length ||
+            currentPositionX === CHARACTERS_MAP.length - 1 ||
             currentPositionY === CHARACTERS_MAP[currentPositionX].length - 1
           ) {
             posibleDirections.push(posibleDirection);
