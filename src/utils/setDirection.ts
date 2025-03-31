@@ -93,7 +93,6 @@ export const setDirection = (
 
         // Turn if letter is found on turn
         if (LETTERS_REGEX.test(currentCharacter)) {
-          console.log(CHARACTERS_MAP.length);
           if (
             currentPositionX === 0 ||
             currentPositionY === 0 ||
@@ -102,25 +101,7 @@ export const setDirection = (
           ) {
             posibleDirections.push(posibleDirection);
 
-            const direction = posibleDirections.includes(
-              String(storageDirection)
-            )
-              ? storageDirection
-              : posibleDirection;
-
-            const [directionX, directionY] =
-              POSIBLE_DIRECTIONS_MAP[Number(direction)];
-
-            const nextXInSameDirectionX = currentPositionX + directionX;
-            const nextYInSameDirectionY = currentPositionY + directionY;
-
-            if (
-              nextXInSameDirectionX >= 0 &&
-              nextYInSameDirectionY >= 0 &&
-              CHARACTERS_MAP[nextXInSameDirectionX][nextYInSameDirectionY]
-            ) {
-              localStorage.setItem("direction", String(direction));
-            }
+            localStorage.setItem("direction", String(posibleDirection));
           }
         }
       }
