@@ -4,27 +4,6 @@ import { getCollectedCharacters } from "../utils/getCollectedCharacters";
 
 // getCollectedCharacters function tests
 describe("getCollectedCharacters function tests", () => {
-  let localStorageMock: Record<string, string>;
-
-  beforeEach(() => {
-    localStorageMock = {};
-
-    global.localStorage = {
-      getItem: vi.fn((key) => localStorageMock[key] || null),
-      setItem: vi.fn((key, value) => {
-        localStorageMock[key] = value.toString();
-      }),
-      removeItem: vi.fn(),
-      clear: vi.fn(),
-      key: vi.fn(),
-      length: 0,
-    };
-  });
-
-  afterEach(() => {
-    vi.resetAllMocks();
-  });
-
   it("should throw an error if next character is empty string", () => {
     const mockCharactersMap = [
       ["@", "-", "-", "A", "-", "+", "", ""],

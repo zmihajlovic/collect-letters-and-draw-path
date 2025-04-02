@@ -7,10 +7,10 @@ const currentCharacter = "P";
 
 vi.mock("../utils/setDirection", () => ({
   POSIBLE_DIRECTIONS_MAP: {
-    0: [0, -1], // UP
-    1: [1, 0], // RIGHT
-    2: [0, 1], // DOWN
-    3: [-1, 0], // LEFT
+    0: [-1, 0], // UP
+    1: [0, 1], // RIGHT
+    2: [1, 0], // DOWN
+    3: [0, -1], // LEFT
   },
   setDirection: vi.fn(),
 }));
@@ -43,7 +43,7 @@ describe("getNextPosition function tests", () => {
 
     const visitedPositions: number[][] = [];
 
-    const result = getNextPosition(
+    const nextPosition = getNextPosition(
       currentPosition,
       currentCharacter,
       visitedPositions
@@ -55,15 +55,15 @@ describe("getNextPosition function tests", () => {
       visitedPositions
     );
     expect(localStorage.getItem).toHaveBeenCalledWith("direction");
-    expect(result).toEqual([1, 0]);
+    expect(nextPosition).toEqual([0, 1]);
   });
 
   it("should calculate the next position based on right direction", () => {
-    const visitedPositions: number[][] = [[5, 6]];
+    const visitedPositions: number[][] = [];
 
     vi.mocked(localStorage.getItem).mockReturnValue("1"); // right direction
 
-    const result = getNextPosition(
+    const nextPosition = getNextPosition(
       currentPosition,
       currentCharacter,
       visitedPositions
@@ -75,7 +75,7 @@ describe("getNextPosition function tests", () => {
       visitedPositions
     );
     expect(localStorage.getItem).toHaveBeenCalledWith("direction");
-    expect(result).toEqual([2, 1]);
+    expect(nextPosition).toEqual([1, 2]);
   });
 
   it("should calculate the next position based on down direction", () => {
@@ -83,7 +83,7 @@ describe("getNextPosition function tests", () => {
 
     vi.mocked(localStorage.getItem).mockReturnValue("2"); // down direction
 
-    const result = getNextPosition(
+    const nextPosition = getNextPosition(
       currentPosition,
       currentCharacter,
       visitedPositions
@@ -95,7 +95,7 @@ describe("getNextPosition function tests", () => {
       visitedPositions
     );
     expect(localStorage.getItem).toHaveBeenCalledWith("direction");
-    expect(result).toEqual([1, 2]);
+    expect(nextPosition).toEqual([2, 1]);
   });
 
   it("should calculate the next position based on left direction", () => {
@@ -103,7 +103,7 @@ describe("getNextPosition function tests", () => {
 
     vi.mocked(localStorage.getItem).mockReturnValue("3"); // left direction
 
-    const result = getNextPosition(
+    const nextPosition = getNextPosition(
       currentPosition,
       currentCharacter,
       visitedPositions
@@ -115,6 +115,6 @@ describe("getNextPosition function tests", () => {
       visitedPositions
     );
     expect(localStorage.getItem).toHaveBeenCalledWith("direction");
-    expect(result).toEqual([0, 1]);
+    expect(nextPosition).toEqual([1, 0]);
   });
 });

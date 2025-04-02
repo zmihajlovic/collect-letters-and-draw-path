@@ -22,6 +22,10 @@ describe("setDirection function tests", () => {
     };
   });
 
+  afterEach(() => {
+    vi.resetAllMocks();
+  });
+
   it("should set initial direction when current character is START_CHARACTER", () => {
     const mockCharactersMap = [
       ["@", "-", "x"],
@@ -78,9 +82,6 @@ describe("setDirection function tests", () => {
       [2, 2],
     ];
 
-    // Get direction from local storage mock
-    localStorageMock["direction"] = "1";
-
     setDirection(currentPosition, currentCharacter, visitedPositions);
 
     expect(localStorage.setItem).toHaveBeenCalledWith("direction", "0");
@@ -133,7 +134,7 @@ describe("setDirection function tests", () => {
       mockCharactersMap
     );
 
-    const currentPosition = [0, 4]; // + position
+    const currentPosition = [0, 4]; // TURN_CHARACTER position
     const currentCharacter = TURN_CHARACTER;
     const visitedPositions = [
       [0, 0],

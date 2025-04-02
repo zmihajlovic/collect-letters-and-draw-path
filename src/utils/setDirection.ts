@@ -99,7 +99,7 @@ export const setDirection = (
             currentPositionX === CHARACTERS_MAP.length - 1 ||
             currentPositionY === CHARACTERS_MAP[currentPositionX].length - 1
           ) {
-            localStorage.setItem("direction", String(posibleDirection));
+            localStorage.setItem("direction", posibleDirection);
           }
         }
       }

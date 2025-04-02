@@ -3,7 +3,6 @@ import { getStartPosition } from "../utils/getStartPosition";
 import * as CharactersMap from "../charactersMap";
 
 // getStartPosition function tests
-
 describe("getStartPosition function tests", () => {
   it("should return correct start position", () => {
     const mockCharactersMap = [
