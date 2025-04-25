@@ -5,6 +5,7 @@ import { START_CHARACTER } from "../utils/getStartPosition";
 
 // setDirection function tests
 describe("setDirection function tests", () => {
+  const mockedSetDirection = vi.mocked(setDirection);
   let localStorageMock: Record<string, string>;
 
   beforeEach(() => {
@@ -37,7 +38,7 @@ describe("setDirection function tests", () => {
       mockCharactersMap
     );
 
-    setDirection([0, 0], START_CHARACTER, []);
+    mockedSetDirection([0, 0], START_CHARACTER, []);
 
     expect(localStorageMock["direction"]).toBe("1");
   });
@@ -58,7 +59,7 @@ describe("setDirection function tests", () => {
     const visitedPositions: number[][] = [];
 
     expect(() => {
-      setDirection(currentPosition, currentCharacter, visitedPositions);
+      mockedSetDirection(currentPosition, currentCharacter, visitedPositions);
     }).toThrowError("Multiple starting paths.");
   });
 
@@ -82,7 +83,7 @@ describe("setDirection function tests", () => {
       [2, 2],
     ];
 
-    setDirection(currentPosition, currentCharacter, visitedPositions);
+    mockedSetDirection(currentPosition, currentCharacter, visitedPositions);
 
     expect(localStorage.setItem).toHaveBeenCalledWith("direction", "0");
   });
@@ -119,7 +120,7 @@ describe("setDirection function tests", () => {
     localStorageMock["direction"] = "1";
 
     expect(() =>
-      setDirection(currentPosition, currentCharacter, visitedPositions)
+      mockedSetDirection(currentPosition, currentCharacter, visitedPositions)
     ).toThrowError("Fork in path.");
   });
 
@@ -147,7 +148,7 @@ describe("setDirection function tests", () => {
     localStorageMock["direction"] = "1"; // Right direction
 
     expect(() =>
-      setDirection(currentPosition, currentCharacter, visitedPositions)
+      mockedSetDirection(currentPosition, currentCharacter, visitedPositions)
     ).toThrowError("Fake turn.");
   });
 });
